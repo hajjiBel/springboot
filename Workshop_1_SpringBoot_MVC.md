@@ -1,8 +1,4 @@
-# TP1 – Spring Boot MVC (Niveau débutant) — Guide complet pas à pas
-
-**Durée estimée** : 6-8 heures  
-**Niveau** : L2/L3 Informatique  
-**Langue** : Français  
+# TP1 – Spring Boot MVC 
 
 ---
 
