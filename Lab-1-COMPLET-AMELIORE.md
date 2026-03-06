@@ -1,5 +1,5 @@
 # Lab 1 - Architecture Spring Boot MVC : Couches Modèle, Persistance et Service
-## VERSION AMÉLIORÉE - COMPLÈTE
+
 
 **Framework** : Spring Boot 3.2+  
 **IDE** : IntelliJ IDEA Ultimate/Community  
