@@ -1,4 +1,4 @@
-## Instructions pour les étudiants
+# Instructions pour les étudiants
 Chaque étudiant sera interrogé oralement sur 3 questions tirée du contenu du Lab1 lors de la séance.
 
 
