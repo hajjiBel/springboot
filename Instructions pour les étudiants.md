@@ -5,12 +5,9 @@ Chaque étudiant sera interrogé oralement sur une question tirée du contenu du
 
 ✅ 3 catégories :
 
-    Concepts Fondamentaux  - ⭐ Facile
-    
-    Code et Implémentation  - ⭐⭐ Moyen
-    
-    Tests et Concepts Avancés  - ⭐⭐⭐ Difficile
-    
+    Concepts Fondamentaux  - ⭐ Facile    
+    Code et Implémentation  - ⭐⭐ Moyen    
+    Tests et Concepts Avancés  - ⭐⭐⭐ Difficile    
     
 ✅ Barème de notation (0-20 points)
 
