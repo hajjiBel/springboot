@@ -130,6 +130,7 @@ Créer une entité JPA `Fournisseur` avec une relation **ManyToMany** vers les p
                └──────────────────────────────────┘
 ```
 
+
 ## 📝 Instructions
 
 ### Étape 1.1 : Créer le fichier Fournisseur.java
@@ -156,7 +157,7 @@ import java.util.List;
  *            peut être fourni par plusieurs fournisseurs → ManyToMany
  */
 @Entity
-@Table(name = "fournisseur")
+@Table(name = "____") // TODO: nom de la table en BD (indice : "fournisseur")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -179,17 +180,29 @@ public class Fournisseur {
      * - @NotBlank : Obligatoire
      * - @Size : Entre 3 et 100 caractères
      */
-    @NotBlank(message = "Le nom du fournisseur est obligatoire")
-    @Size(min = 3, max = 100, message = "Le nom doit contenir entre 3 et 100 caractères")
-    @Column(name = "nom_fournisseur", nullable = false, length = 100)
+    @NotBlank(message = "____") // TODO: message d'erreur parlant
+    @Size(
+        min = 3,
+        max = 100,
+        message = "Le nom doit contenir entre ____ et ____ caractères" // TODO: bornes min/max
+    )
+    @Column(
+        name = "nom_fournisseur",
+        nullable = ____ ,         // TODO: true ou false ?
+        length = 100
+    )
     private String nomFournisseur;
 
     /**
      * Email du fournisseur
      * Validation : @Email
      */
-    @Email(message = "L'email doit être valide")
-    @Column(name = "email", unique = true, length = 150)
+    @Email(message = "____") // TODO: message d'erreur pour email invalide
+    @Column(
+        name = "email",
+        unique = true,
+        length = 150
+    )
     private String email;
 
     /**
@@ -201,7 +214,7 @@ public class Fournisseur {
     /**
      * Adresse du fournisseur
      */
-    @Column(name = "adresse", length = 255)
+    @Column(name = "____", length = 255) // TODO: nom de colonne pour l'adresse
     private String adresse;
 
     /**
@@ -215,7 +228,7 @@ public class Fournisseur {
      *           les produits en supprimant un fournisseur.
      */
     @ManyToMany(
-        mappedBy = "fournisseurs",
+        mappedBy = "____",         // TODO: nom de l'attribut côté Produit
         fetch = FetchType.LAZY
     )
     private List<Produit> produits = new ArrayList<>();
@@ -227,7 +240,7 @@ public class Fournisseur {
      */
     public void addProduit(Produit produit) {
         this.produits.add(produit);
-        produit.getFournisseurs().add(this);
+        produit.getFournisseurs().add(____); // TODO: this ou produit ?
     }
 
     /**
@@ -235,17 +248,30 @@ public class Fournisseur {
      */
     public void removeProduit(Produit produit) {
         this.produits.remove(produit);
-        produit.getFournisseurs().remove(this);
+        produit.getFournisseurs().remove(____); // TODO: même objet que ci-dessus
     }
 
     @Override
     public String toString() {
         return String.format(
             "Fournisseur{id=%d, nom='%s', email='%s', nbProduits=%d}",
-            idFournisseur, nomFournisseur, email, produits.size()
+            idFournisseur,
+            nomFournisseur,
+            email,
+            ____  // TODO: taille de la liste produits
         );
     }
 }
+```
+
+## ✅ CHECKPOINT 1.1
+
+**Vérifiez que** :
+- [ ] La classe `Fournisseur` est créée dans `entities/`
+- [ ] Toutes les annotations JPA sont présentes (`@Entity`, `@Id`, `@GeneratedValue`)
+- [ ] Les validations sont appliquées (`@NotBlank`, `@Size`, `@Email`)
+- [ ] La relation `@ManyToMany(mappedBy = "...")` est présente
+- [ ] La classe compile sans erreurs
 ```
 
 ## ✅ CHECKPOINT 1.1
@@ -576,37 +602,37 @@ import java.util.List;
 public interface FournisseurService {
 
     /** Sauvegarder un fournisseur */
-    Fournisseur saveFournisseur(Fournisseur fournisseur);
+    ____ saveFournisseur(____ fournisseur); // TODO: type de retour et type du paramètre
 
     /** Récupérer un fournisseur par son ID */
-    Fournisseur getFournisseurById(Long id);
+    Fournisseur getFournisseurById(____ id); // TODO: type de l'ID
 
     /** Récupérer tous les fournisseurs */
-    List<Fournisseur> getAllFournisseurs();
+    List<____> getAllFournisseurs(); // TODO: type générique de la liste
 
     /** Mettre à jour un fournisseur */
-    Fournisseur updateFournisseur(Long id, Fournisseur fournisseurMaj);
+    Fournisseur updateFournisseur(Long id, Fournisseur ____); // TODO: nom du paramètre mis à jour
 
     /** Supprimer un fournisseur */
-    void deleteFournisseur(Long id);
+    void deleteFournisseur(Long ____); // TODO: type ou nom
 
     /** Rechercher un fournisseur par nom */
-    Fournisseur findByNom(String nom);
+    Fournisseur findByNom(String ____); // TODO: nom du paramètre
 
     /** Rechercher les fournisseurs contenant un texte dans le nom */
-    List<Fournisseur> findByNomContains(String keyword);
+    List<Fournisseur> findByNomContains(____ keyword); // TODO: type du paramètre
 
     /** Récupérer les fournisseurs triés par nom */
     List<Fournisseur> findAllOrderByNom();
 
     /** Lier un fournisseur à un produit */
-    void addProduitToFournisseur(Long idFournisseur, Long idProduit);
+    void addProduitToFournisseur(____ idFournisseur, ____ idProduit); // TODO: types
 
     /** Délier un fournisseur d'un produit */
     void removeProduitFromFournisseur(Long idFournisseur, Long idProduit);
 
     /** Compter les fournisseurs avec au moins N produits */
-    Long countFournisseursWithMinProducts(int minProduits);
+    Long countFournisseursWithMinProducts(int ____); // TODO: nom du paramètre
 
     /** Récupérer le nombre total de fournisseurs */
     Long countFournisseurs();
@@ -647,11 +673,11 @@ public class FournisseurServiceImpl implements FournisseurService {
     @Override
     @Transactional
     public Fournisseur saveFournisseur(Fournisseur fournisseur) {
-        log.info("Sauvegarde du fournisseur : {}", fournisseur.getNomFournisseur());
+        log.info("Sauvegarde du fournisseur : {}", fournisseur != null ? fournisseur.getNomFournisseur() : "NULL");
 
         if (fournisseur == null || fournisseur.getNomFournisseur() == null
                 || fournisseur.getNomFournisseur().isBlank()) {
-            throw new IllegalArgumentException("Le nom du fournisseur est obligatoire");
+            throw new IllegalArgumentException("____"); // TODO: message d'erreur
         }
 
         if (fournisseur.getEmail() != null
@@ -660,7 +686,7 @@ public class FournisseurServiceImpl implements FournisseurService {
                     + fournisseur.getEmail());
         }
 
-        Fournisseur saved = fournisseurRepository.save(fournisseur);
+        Fournisseur saved = fournisseurRepository.____(fournisseur); // TODO: méthode CRUD à utiliser
         log.info("✅ Fournisseur sauvegardé avec l'ID : {}", saved.getIdFournisseur());
         return saved;
     }
@@ -672,7 +698,7 @@ public class FournisseurServiceImpl implements FournisseurService {
         return fournisseurRepository.findById(id)
             .orElseThrow(() -> {
                 log.warn("Fournisseur non trouvé avec l'ID : {}", id);
-                return new RuntimeException("Fournisseur non trouvé avec l'ID : " + id);
+                return new RuntimeException("Fournisseur non trouvé avec l'ID : " + ____); // TODO: variable à afficher
             });
     }
 
@@ -680,7 +706,7 @@ public class FournisseurServiceImpl implements FournisseurService {
     @Transactional(readOnly = true)
     public List<Fournisseur> getAllFournisseurs() {
         log.info("Récupération de tous les fournisseurs");
-        List<Fournisseur> list = fournisseurRepository.findAll();
+        List<Fournisseur> list = fournisseurRepository.____(); // TODO: méthode pour récupérer tous les fournisseurs
         log.info("Nombre de fournisseurs trouvés : {}", list.size());
         return list;
     }
@@ -705,7 +731,7 @@ public class FournisseurServiceImpl implements FournisseurService {
             existant.setAdresse(fournisseurMaj.getAdresse());
         }
 
-        Fournisseur updated = fournisseurRepository.save(existant);
+        Fournisseur updated = fournisseurRepository.save(____); // TODO: objet à sauvegarder
         log.info("✅ Fournisseur mis à jour avec succès");
         return updated;
     }
@@ -718,7 +744,7 @@ public class FournisseurServiceImpl implements FournisseurService {
             log.warn("Tentative de suppression d'un fournisseur inexistant : {}", id);
             throw new RuntimeException("Fournisseur non trouvé avec l'ID : " + id);
         }
-        fournisseurRepository.deleteById(id);
+        fournisseurRepository.delete(____); // TODO: objet ou méthode de suppression
         log.info("✅ Fournisseur supprimé avec succès");
     }
 
@@ -727,21 +753,21 @@ public class FournisseurServiceImpl implements FournisseurService {
     public Fournisseur findByNom(String nom) {
         log.info("Recherche du fournisseur avec le nom : {}", nom);
         return fournisseurRepository.findByNomFournisseur(nom)
-            .orElseThrow(() -> new RuntimeException("Fournisseur non trouvé : " + nom));
+            .orElseThrow(() -> new RuntimeException("____")); // TODO: message si non trouvé
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Fournisseur> findByNomContains(String keyword) {
         log.info("Recherche des fournisseurs contenant : {}", keyword);
-        return fournisseurRepository.findByNomFournisseurContains(keyword);
+        return fournisseurRepository.findByNomFournisseurContains(____); // TODO: paramètre
     }
 
     @Override
     @Transactional(readOnly = true)
     public List<Fournisseur> findAllOrderByNom() {
         log.info("Récupération des fournisseurs triés par nom");
-        return fournisseurRepository.findByOrderByNomFournisseurAsc();
+        return fournisseurRepository.____(); // TODO: méthode de tri par nom ASC
     }
 
     @Override
@@ -750,7 +776,7 @@ public class FournisseurServiceImpl implements FournisseurService {
         log.info("Association du produit {} au fournisseur {}", idProduit, idFournisseur);
         Fournisseur fournisseur = getFournisseurById(idFournisseur);
         Produit produit = produitRepository.findById(idProduit)
-            .orElseThrow(() -> new RuntimeException("Produit non trouvé avec l'ID : " + idProduit));
+            .orElseThrow(() -> new RuntimeException("____")); // TODO: message d'erreur produit
 
         fournisseur.addProduit(produit);
         fournisseurRepository.save(fournisseur);
@@ -763,7 +789,7 @@ public class FournisseurServiceImpl implements FournisseurService {
         log.info("Dissociation du produit {} du fournisseur {}", idProduit, idFournisseur);
         Fournisseur fournisseur = getFournisseurById(idFournisseur);
         Produit produit = produitRepository.findById(idProduit)
-            .orElseThrow(() -> new RuntimeException("Produit non trouvé avec l'ID : " + idProduit));
+            .orElseThrow(() -> new RuntimeException("____")); // TODO: message d'erreur
 
         fournisseur.removeProduit(produit);
         fournisseurRepository.save(fournisseur);
@@ -774,7 +800,7 @@ public class FournisseurServiceImpl implements FournisseurService {
     @Transactional(readOnly = true)
     public Long countFournisseursWithMinProducts(int minProduits) {
         log.info("Comptage des fournisseurs avec au moins {} produits", minProduits);
-        return fournisseurRepository.countFournisseursWithMinProducts(minProduits);
+        return fournisseurRepository.____(minProduits); // TODO: méthode de comptage
     }
 
     @Override
@@ -784,6 +810,16 @@ public class FournisseurServiceImpl implements FournisseurService {
     }
 }
 ```
+
+## ✅ CHECKPOINT 5.1
+
+**Vérifiez que** :
+- [ ] `FournisseurService` est créé dans `services/`
+- [ ] `FournisseurServiceImpl` est créé dans `services/`
+- [ ] L’interface définit au moins 12 méthodes
+- [ ] La logique d’association/dissociation ManyToMany est correcte
+- [ ] La classe est annotée avec `@Service`
+- [ ] Les deux fichiers compilent sans erreurs
 
 ## ✅ CHECKPOINT 5.1
 
