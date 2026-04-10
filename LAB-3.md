@@ -272,7 +272,7 @@ public class Fournisseur {
 - [ ] Les validations sont appliquées (`@NotBlank`, `@Size`, `@Email`)
 - [ ] La relation `@ManyToMany(mappedBy = "...")` est présente
 - [ ] La classe compile sans erreurs
-```
+
 
 ## ✅ CHECKPOINT 1.1
 
